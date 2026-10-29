@@ -1,0 +1,36 @@
+
+name: Neon Setup
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup-neon:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Neon CLI
+        run: npm install -g neon@latest
+
+      - name: Initialize Neon
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+        run: |
+          neon init -y \
+            --org-id org-flat-math-66143603 \
+            --project-id tiny-bonus-49811166 \
+            --branch production \
+            --services postgres
+
+      - name: Deploy Neon configuration
+        env:
+          NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+        run: neon deploy
