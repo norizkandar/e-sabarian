@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1120">
+  <meta name="description" content="School Face Attendance System - a privacy-first school attendance platform.">
+  <title>School Face Attendance System</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo">SFA</div>
+      <div>
+        <p class="eyebrow">SCHOOL OPERATIONS</p>
+        <h1>School Face Attendance</h1>
+      </div>
+    </div>
+
+    <span class="system-status">
+      <span class="status-dot"></span>
+      System Ready
+    </span>
+  </header>
+
+  <main class="container">
+
+    <section class="welcome-section">
+      <p class="eyebrow">ATTENDANCE MANAGEMENT</p>
+      <h2>Welcome to <span>Smart Attendance.</span></h2>
+      <p class="welcome-description">
+        A modern platform for school attendance, student records
+        and secure camera-assisted verification.
+      </p>
+    </section>
+
+    <section class="privacy-banner">
+      <div class="privacy-icon">盾</div>
+      <div>
+        <h3>Privacy-first pilot</h3>
+        <p>
+          Camera preview is for testing only. This version does not
+          identify faces or upload face images. Staff must verify
+          student identity before recording attendance.
+        </p>
+      </div>
+    </section>
+
+    <section class="dashboard-grid">
+
+      <article class="panel camera-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">01 / CAMERA</p>
+            <h3>Face Scan Station</h3>
+          </div>
+          <span id="cameraStatus" class="badge">Camera Off</span>
+        </div>
+
+        <div class="camera-frame">
+          <video id="cameraVideo" autoplay muted playsinline></video>
+
+          <div id="cameraPlaceholder" class="camera-placeholder">
+            <div class="scan-symbol">◎</div>
+            <h4>Camera Preview</h4>
+            <p>Start the camera to begin testing.</p>
+          </div>
+        </div>
+
+        <div class="button-group">
+          <button id="startCameraBtn" class="button button-primary" type="button">
+            Start Camera
+          </button>
+
+          <button id="stopCameraBtn" class="button button-secondary" type="button" disabled>
+            Stop Camera
+          </button>
+        </div>
+
+        <p id="cameraMessage" class="message" role="status">
+          Camera permission will be requested by your browser.
+        </p>
+      </article>
+
+      <article class="panel login-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">02 / ACCESS</p>
+            <h3>Staff Login</h3>
+          </div>
+          <span class="lock-icon">◆</span>
+        </div>
+
+        <p class="muted">
+          Sign in with an authorized school staff account.
+        </p>
+
+        <form id="loginForm">
+          <label for="email">Email address</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="staff@school.edu.my"
+            autocomplete="username"
+            required
+          >
+
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          >
+
+          <button class="button button-primary full-width" type="submit">
+            Sign In
+          </button>
+        </form>
+
+        <p id="loginMessage" class="message" role="status"></p>
+      </article>
+
+    </section>
+
+    <section class="panel attendance-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">03 / RECORDS</p>
+          <h3>Attendance Overview</h3>
+        </div>
+        <span class="badge">Live data pending</span>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <p>Total Students</p>
+          <h4 id="totalStudents">—</h4>
+        </div>
+
+        <div class="stat-card">
+          <p>Present Today</p>
+          <h4 id="presentCount">—</h4>
+        </div>
+
+        <div class="stat-card">
+          <p>Late Today</p>
+          <h4 id="lateCount">—</h4>
+        </div>
+      </div>
+
+      <div class="table-placeholder">
+        <div class="empty-icon">▤</div>
+        <h4>Attendance records</h4>
+        <p>
+          Student records will appear here after the database
+          and authorized staff access are configured.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>School Face Attendance System</p>
+      <p>Privacy-first development pilot</p>
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
